@@ -19,7 +19,7 @@ class Fortune_Teller:
         self.fortunes_history_list.append(random_picks)
         return self.fortunes_list[random_picks]
     def question_check(self, question):
-        if question in self.questipons_list:
+        if question in self.questions_list:
             return "I've already answered that question"
         else:
             self.questions_list.append(question)
@@ -29,37 +29,9 @@ class Fortune_Teller:
             print("None yet")
         else: 
             for i in range(len(self.fortunes_history_list)):             
-                print("["+str(i)+"] " + self.questions_list[i]+ " - "+ self.fortunes_list[i])
+                print("["+str(self.fortunes_history_list[i])+"] " + self.questions_list[i]+ " - "+ self.fortunes_list[self.fortunes_history_list[i]])
 
 # Create the class Fortune_Teller
-    # create the constructor (__init__) method
-    # it takes as input: a list of possible answers
-    # it sets this object's fortunes_list (instance variable) to the passed list of possible answers
-    # it sets this object's questions_list (instance variable) to an empty list
-    # it sets this object's fortunes_history_list (instance variable) to an empty list
-    
-
-    # create the __str__ method
-    # It should return a string with all the fortunes
-    # in fortunes_list separated by commas
-    # For example : "Yes, No, Not clear"
-
-    # create the get_fortune method
-    # it randomly picks an index from 0 to the number of items in the fortunes_list minus one
-    # it adds that index to the end of the fortunes_history_list
-    # it returns the answer at the picked index
-
-    # create the question_check method that takes a question
-    # it checks if the question is in the questions_list and if so returns
-    #         "I've already answered that question”
-    # Otherwise it adds the question to the questions_list and
-    # returns the fortune from get_fortune
-
-    # create the print_questions_history method
-    # prints "[answer index] question - answer" for each of the indices in the fortunes_history_list
-    # from the first to the last with each on a separate line.  If there are no items in the
-    # fortunes_history_list it prints "None yet"
-    # it does not return anything!
 
     # EXTRA POINTS
     # create the most_frequent method
@@ -76,8 +48,6 @@ class Fortune_Teller:
     #   The most frequent answer after 200 was Not clear
 
 def main():
-
-    # You are welcome to replace the answer_list with your desired answers
     fortunes_list = ["Yes", "No", "Ask again", "Maybe", "Not clear"]
     bot = Fortune_Teller(fortunes_list)
     while True: 
@@ -88,17 +58,6 @@ def main():
             bot.question_check(question)
             print(question + " - " + bot.get_fortune())
             continue
-
-
-    # get the first question or quit
-
-    # loop while question is not "quit"
-
-        # get an answer from question_check
-
-        # print question - answer
-
-        # get the next question or quit 
 
 def test():
 

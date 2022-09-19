@@ -1,10 +1,34 @@
-﻿# Your name:
-# Your student id:
-# Your email:
+﻿# Your name: Meghana Srinivasa
+# Your student id: 8023 9297
+# Your email: megsrini@umich.edu
 # List who you have worked with on this homework:
-
-
 # import the random module for use in this program
+import random
+class Fortune_Teller:
+    def __init__ (self, fortunes_list):
+        self.fortunes_list = fortunes_list
+        questions_list= []
+        self.questions_list = questions_list
+        fortunes_history_list = []
+        self.fortunes_history_list = fortunes_history_list
+    def __str__(self):
+        return self.fortunes_list
+    def get_fortune(self):
+        random_picks = random.randint(0,(len(self.fortunes_list)-1))
+        self.fortunes_history_list.append(random_picks)
+        return self.fortunes_list[random_picks]
+    def question_check(self, question):
+        if question in self.questions_list:
+            return "I've already answered that question"
+        else:
+            self.questions_list.append(question)
+            return self.get_fortune()
+    def print_questions_history(self):
+        if len(self.fortunes_history_list) == 0:
+            print("None yet")
+        else: 
+            for i in range(len(self.fortunes_history_list)):             
+                print("["+str(i)+"] " + self.questions_list[i]+ " - "+ self.fortunes_list[i])
 
 # Create the class Fortune_Teller
     # create the constructor (__init__) method
@@ -55,6 +79,15 @@ def main():
     # You are welcome to replace the answer_list with your desired answers
     fortunes_list = ["Yes", "No", "Ask again", "Maybe", "Not clear"]
     bot = Fortune_Teller(fortunes_list)
+    while True: 
+        question = input("Ask a question or type quit : ")
+        if question == 'quit':
+            break
+        else:
+            bot.question_check(question)
+            print(question + " - " + bot.get_fortune())
+            continue
+
 
     # get the first question or quit
 
@@ -111,4 +144,4 @@ def test():
 # only run the main function if this file is being run (not imported)
 if __name__ == "__main__":
     main()
-    #test() TODO: Uncomment when you are ready to test your Fortune_Teller class
+    test() #TODO: Uncomment when you are ready to test your Fortune_Teller class

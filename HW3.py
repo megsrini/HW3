@@ -30,22 +30,49 @@ class Fortune_Teller:
         else: 
             for i in range(len(self.fortunes_history_list)):             
                 print("["+str(self.fortunes_history_list[i])+"] " + self.questions_list[i]+ " - "+ self.fortunes_list[self.fortunes_history_list[i]])
-
-# Create the class Fortune_Teller
-
-    # EXTRA POINTS
-    # create the most_frequent method
-    # it takes as input:
-    #   a number, n. Ex: 200
-    # it generates a random response n times by calling get_fortune
-    # It prints the counts for each answer and
-    # prints the most frequently occurring answer (Do not use a dictionary in this solution):
-    #   Yes: 36
-    #   No: 36
-    #   Ask again: 48
-    #   Maybe: 38
-    #   Not clear: 47
-    #   The most frequent answer after 200 was Not clear
+    def most_common(self,n):
+        self.fortunes_history_list = []
+        count_yes = 0 
+        count_no = 0 
+        count_askagain = 0 
+        count_maybe = 0
+        count_notclear = 0 
+        for i in range(n):
+            self.get_fortune()
+        for i in range(len(self.fortunes_history_list)):
+            if self.fortunes_history_list[i] == 0: 
+                count_yes+= 1
+            elif self.fortunes_history_list[i] == 1: 
+                count_no+=1
+            elif self.fortunes_history_list[i] == 2: 
+                count_askagain+=1
+            elif self.fortunes_history_list[i] == 3: 
+                count_maybe+=1
+            elif self.fortunes_history_list[i] == 4: 
+                count_notclear+=1
+        count = 0 
+        num = self.fortunes_history_list[0]
+        for i in self.fortunes_history_list:
+            current = self.fortunes_history_list.count(i)
+            if current > count:
+                count = current 
+                num = i
+        if num == 0: 
+            output = "Yes"
+        if num == 1: 
+            output = "No"
+        if num == 2: 
+            output = "Ask again"
+        if num == 3: 
+            output = "Maybe"
+        if num == 4: 
+            output = "Not clear"
+        print("Yes: "+ str(count_yes))
+        print("No: "+str(count_no))
+        print("Ask again: "+str(count_askagain))
+        print("Maybe: "+str(count_maybe))
+        print("Not clear: "+ str(count_notclear))
+        print("The most frequent answer after " +str(n)+ " was "+ output)
 
 def main():
     fortunes_list = ["Yes", "No", "Ask again", "Maybe", "Not clear"]
@@ -55,8 +82,8 @@ def main():
         if question == 'quit':
             break
         else:
-            bot.question_check(question)
-            print(question + " - " + bot.get_fortune())
+            #bot.question_check(question)
+            print(question + " - " + bot.question_check(question))
             continue
 
 def test():
@@ -97,8 +124,8 @@ def test():
 
     #EXTRA POINTS
     #Uncomment the lines below if you attempt the extra credit!
-    # print("Testing most_common method with 200 responses")
-    # bot2.most_common(200)
+    print("Testing most_common method with 200 responses")
+    bot2.most_common(200)
 
 
 # only run the main function if this file is being run (not imported)

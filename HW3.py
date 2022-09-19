@@ -2,6 +2,7 @@
 # Your student id: 8023 9297
 # Your email: megsrini@umich.edu
 # List who you have worked with on this homework:
+
 # import the random module for use in this program
 import random
 class Fortune_Teller:
@@ -12,13 +13,13 @@ class Fortune_Teller:
         fortunes_history_list = []
         self.fortunes_history_list = fortunes_history_list
     def __str__(self):
-        return self.fortunes_list
+        return str(self.fortunes_list)
     def get_fortune(self):
         random_picks = random.randint(0,(len(self.fortunes_list)-1))
         self.fortunes_history_list.append(random_picks)
         return self.fortunes_list[random_picks]
     def question_check(self, question):
-        if question in self.questions_list:
+        if question in self.questipons_list:
             return "I've already answered that question"
         else:
             self.questions_list.append(question)
